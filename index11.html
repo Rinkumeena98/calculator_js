@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" placeholder="0" id="inputBox">
+        <div>
+
+            <button onclick="numButton('%')">%</button>
+            <button onclick="numButton('CE')">CE</button>
+            <button onclick="onclear()">C</button>
+            <button onclick="backspace()">Bs</button>
+
+        </div>
+        <div>
+            <button onclick="numButton('7')">7</button>
+            <button onclick="numButton('8')">8</button>
+            <button onclick="numButton('9')">9</button>
+            <button onclick="numButton('*')">*</button>
+        </div>
+        <div>
+            <button onclick="numButton('4')">4</button>
+            <button onclick="numButton('5')">5</button>
+            <button onclick="numButton('6')">6</button>
+            <button onclick="numButton('-')">-</button>
+
+        </div>
+        <div>
+            <button onclick="numButton('1')">1</button>
+            <button onclick="numButton('2')">2</button>
+            <button onclick="numButton('3')">3</button>
+            <button onclick="numButton('+'), operands()">+</button>
+        </div>
+        <div>
+            <button onclick="numButton('+/-')">+/-</button>
+            <button onclick="numButton('0')">0</button>
+            <button onclick="numButton('.')">.</button>
+            <button onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script>
+    // var input = document.getElementById('inputBox');
+    if (inputValue) {
+    let operands = inputValue.split(/(\+|\-|\*|\%)/); // Split including operators
+    let result = parseFloat(operands[0]); // Start with the first number
+
+    for (let i = 1; i < operands.length; i += 2) {
+        let operator = operands[i];
+        let nextOperand = parseFloat(operands[i + 1]);
+
+        if (operator === '+') {
+            result += nextOperand;
+        } else if (operator === '-') {
+            result -= nextOperand;
+        } else if (operator === '*') {
+            result *= nextOperand;
+        } else if (operator === '%') {
+            result %= nextOperand;
+        }
+    }
+
+    console.log("result", result);
+    input.value = result;
+}
+    </script>
+</body>
+</html>
