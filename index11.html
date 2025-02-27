@@ -44,29 +44,50 @@
         </div>
     </div>
     <script>
-    // var input = document.getElementById('inputBox');
-    if (inputValue) {
-    let operands = inputValue.split(/(\+|\-|\*|\%)/); // Split including operators
-    let result = parseFloat(operands[0]); // Start with the first number
+     // var input = document.getElementById('inputBox');
+    function numButton(num) {
+            let  input = document.getElementById('inputBox');
+            let oldvalue = input.value;
+            let newvalue = oldvalue + num;
+            input.value = newvalue;
+        }   
 
-    for (let i = 1; i < operands.length; i += 2) {
-        let operator = operands[i];
-        let nextOperand = parseFloat(operands[i + 1]);
-
-        if (operator === '+') {
-            result += nextOperand;
-        } else if (operator === '-') {
-            result -= nextOperand;
-        } else if (operator === '*') {
-            result *= nextOperand;
-        } else if (operator === '%') {
-            result %= nextOperand;
+        function onclear() {
+            let input = document.getElementById('inputBox');
+            input.value = '';
         }
-    }
 
-    console.log("result", result);
-    input.value = result;
-}
+        function backspace(){
+            let input = document.getElementById('inputBox');
+             let oldvalue =input.value;
+             let  newvalue =oldvalue.slice(0,-1);
+             input.value=newvalue;
+        }
+        function calculate(){
+            let input = document.getElementById('inputBox');
+            let inputValue= input.value; //"9+6+2"
+            console.log("inputValue =",inputValue);
+
+            if(inputValue){
+                let operands = inputValue.split('+','-','*','%');//["9","6","2"]
+                console.log("operands",operands);
+                // let num1 = operands[0];//"9"
+                // console.log("num1",num1);
+                // let num2 = operands[1];//"6"
+                // console.log("num2",num2)
+                let result= 0;
+                // console.log(operands.length);
+                for( let i=0; i<operands.length; i++){
+                    result = result + Number(operands[i]);
+                }
+                
+                input.value = result;
+            }  
+            else if(inputValue){
+
+            }
+            
+        }
     </script>
 </body>
 </html>
